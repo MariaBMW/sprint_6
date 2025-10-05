@@ -7,10 +7,10 @@ class TestLogoNavigation:
     @allure.title("Проверка перехода со страницы заказа на главную страницу по клику на логотип Самоката")
     @allure.description("Клик по логотипу Самоката должен вернуть пользователя на главную страницу.")
     def test_click_scooter_logo_navigate_to_main(self, driver):
+        page = MainPage(driver)
         with allure.step("Открытие страницы заказа"):
-            driver.get(ORDER_PAGE_URL)
+            page.open(ORDER_PAGE_URL)
         with allure.step("Клик на логотип Самоката"):
-            page = MainPage(driver)
             page.click_scooter_logo()
         with allure.step("Ожидание загрузки главной страницы и убеждение в переходе"):
             page.wait_for_url(MAIN_PAGE_URL)

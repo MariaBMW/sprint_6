@@ -6,17 +6,11 @@ class MainPage(BasePage):
 
     @allure.step('Клик по кнопке "Заказать" в шапке')
     def click_order_button_header(self):
-        # Делаем скролл и кликаем, чтобы шапка не перекрывала элемент
-        button = self.find(MainPageLocators.ORDER_BUTTON_HEADER)
-        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", button)
-        self.driver.execute_script("window.scrollBy(0, -100);")  # сверху шапка, смещаем
-        self.wait_and_click(MainPageLocators.ORDER_BUTTON_HEADER)
+        self.scroll_and_safe_click(MainPageLocators.ORDER_BUTTON_HEADER)
         
     @allure.step('Клик по кнопке "Заказать" внизу страницы')
     def click_order_button_footer(self):
-        button = self.find(MainPageLocators.ORDER_BUTTON)
-        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", button)
-        self.wait_and_click(MainPageLocators.ORDER_BUTTON)
+        self.scroll_and_safe_click(MainPageLocators.ORDER_BUTTON)
 
     @allure.step('Клик по логотипу Яндекса')
     def click_yandex_logo(self):

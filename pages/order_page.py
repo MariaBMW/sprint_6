@@ -1,7 +1,5 @@
 import allure
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from pages.base_page import BasePage
 from locators.order_page_locators import OrderPageLocators
 from data import Users
@@ -24,9 +22,7 @@ class OrderPage(BasePage):
         field.send_keys(subway)
         # Поиск нужной станции в выпадающем списке 
         option_locator = (By.XPATH, f".//div[text()='{subway}']")
-        WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(option_locator)
-        ).click()
+        self.wait_and_click(option_locator)
 
     @allure.step('Заполнение данных по аренде')
     def fill_rent_info(self, user):

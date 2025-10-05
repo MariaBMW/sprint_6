@@ -79,3 +79,6 @@ class BasePage:
         WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable(locator))
         element.click()
 
+    @allure.step('Открытие страницы {url}')
+    def open(self, url):
+        self.driver.get(url)
