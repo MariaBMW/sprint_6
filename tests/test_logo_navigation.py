@@ -21,9 +21,12 @@ class TestLogoNavigation:
     @allure.title("Проверка перехода на страницу Дзена по клику на логотип Яндекса")
     @allure.description("Клик по логотипу Яндекса должен открыть Дзен в новой вкладке.")
     def test_click_yandex_logo_navigate_to_dzen(self, driver):
+        page = MainPage(driver)
+        with allure.step("Открытие страницы заказа"):
+            page.open(ORDER_PAGE_URL)
+        with allure.step("Запоминаем исходный список вкладок"):
+            old_tabs = page.get_window_handles()
         with allure.step("Клик по логотипу Яндекса (должна открыться новая вкладка)"):
-            page = MainPage(driver)
-            old_tabs = driver.window_handles
             page.click_yandex_logo()
         with allure.step("Ожидание открытия новой вкладки и переключение на неё"):
             page.wait_for_new_tab(old_tabs)

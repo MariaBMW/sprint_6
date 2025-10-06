@@ -82,3 +82,7 @@ class BasePage:
     @allure.step('Открытие страницы {url}')
     def open(self, url):
         self.driver.get(url)
+
+    @allure.step('Получение списка открытых вкладок')
+    def get_window_handles(self):
+        return self.driver.window_handles
